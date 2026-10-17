@@ -29,7 +29,7 @@ def format_passages(docs: list[Document]) -> str:
 
 def make_search_tool(vector_store: VectorStore, k: int):
 
-    @tool
+    @tool(response_format="content_and_artifact")
     def search_knowledge(query: str, category: Category | None = None):
         """Search the FieldOracle knowledge base for passages about a question.
 
@@ -49,7 +49,7 @@ def make_search_tool(vector_store: VectorStore, k: int):
             )
         ]
 
-        return format_passages(docs)
+        return format_passages(docs), docs
 
     return search_knowledge
 

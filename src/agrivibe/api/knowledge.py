@@ -21,7 +21,7 @@ def index_document(
         raise HTTPException(status_code=415, detail="Only PDF files can be indexed.")
 
     try:
-        service.index_pdf(file.filename, file.file.read(), category)
+       return service.index_pdf(file.filename, file.file.read(), category)
     except ValueError as error:
         raise HTTPException(status_code=422, detail=str(error)) from error
 

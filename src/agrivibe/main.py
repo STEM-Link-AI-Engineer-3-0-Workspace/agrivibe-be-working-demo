@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from agrivibe.api import knowledge
+from agrivibe.api import knowledge, ask
 
 app = FastAPI(
     title="AgriVibe API",
@@ -9,6 +9,7 @@ app = FastAPI(
 )
 
 app.include_router(knowledge.router)
+app.include_router(ask.router)
 
 @app.get("/health", tags=["System", "Health"])
 def health() -> dict[str, str]:
